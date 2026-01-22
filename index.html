@@ -9,543 +9,761 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-
+        
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            width: 100vw;
             min-height: 100vh;
+            background: linear-gradient(135deg, #0c1a2d 0%, #1a3a5f 100%);
+            padding: 20px;
+            overflow-x: auto;
         }
-
-        .header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dashboard-title {
             color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .header p {
-            font-size: 18px;
-            opacity: 0.95;
-        }
-
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        /* Home Dashboard - 6 Clickable Cards */
-        #home {
-            display: block;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 8px solid;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        /* Individual card colors */
-        #card-performance { border-left-color: #c2410c; }
-        #card-performance .card-title { color: #c2410c; }
-
-        #card-running { border-left-color: #15803d; }
-        #card-running .card-title { color: #15803d; }
-
-        #card-loading { border-left-color: #0891b2; }
-        #card-loading .card-title { color: #0891b2; }
-
-        #card-key-params { border-left-color: #1e40af; }
-        #card-key-params .card-title { color: #1e40af; }
-
-        #card-area-status { border-left-color: #7e22ce; }
-        #card-area-status .card-title { color: #7e22ce; }
-
-        #card-machinery { border-left-color: #b45309; }
-        #card-machinery .card-title { color: #b45309; }
-
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 8px;
-            font-size: 15px;
-        }
-
-        th {
-            background-color: #f1f5f9;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-            color: #475569;
-        }
-
-        td {
-            padding: 12px;
-            background-color: #f8fafc;
-        }
-
-        .text-right { text-align: right; }
-        .value-ftd { color: #0066cc; font-weight: 700; }
-        .value-variance { color: #dc2626; font-weight: 700; }
-
-        /* Detail Views */
-        .detail-view {
-            display: none;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            margin-top: 20px;
-        }
-
-        .back-btn {
-            background: #4f46e5;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-bottom: 30px;
-            transition: background 0.3s;
-        }
-
-        .back-btn:hover {
-            background: #4338ca;
-        }
-
-        .report-title {
             font-size: 28px;
             font-weight: 600;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-
-        .subtitle {
-            color: #6b7280;
-            font-size: 17px;
-            margin-bottom: 30px;
+        
+        .dashboard-title::before {
+            content: "⛏️";
+            font-size: 24px;
         }
-
-        .total-row {
-            background-color: #e0e7ff !important;
-            font-weight: 700;
+        
+        .report-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
         }
-
-        .gap-red { color: #dc2626; font-weight: 700; }
-
-        .summary-box {
+        
+        .report-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .report-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .report-btn:active {
+            transform: translateY(0);
+        }
+        
+        .dashboard-container {
+            width: 100%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            margin: 40px 0;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto 1fr;
+            gap: 25px;
+            grid-template-areas: 
+                "performance running-hours loading"
+                "key-parameters area-status machinery"
+                "key-parameters area-status machinery";
         }
-
-        .summary-card {
-            background: white;
-            border-radius: 10px;
-            padding: 24px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid #6366f1;
+        
+        .dashboard-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dashboard-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Different color themes for each box */
+        .performance-box {
+            border-top: 5px solid #3498db;
+        }
+        
+        .running-hours-box {
+            border-top: 5px solid #2ecc71;
+        }
+        
+        .loading-box {
+            border-top: 5px solid #e74c3c;
+        }
+        
+        .key-parameters-box {
+            border-top: 5px solid #f39c12;
+        }
+        
+        .area-status-box {
+            border-top: 5px solid #9b59b6;
+        }
+        
+        .machinery-box {
+            border-top: 5px solid #1abc9c;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            color: #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-icon {
+            font-size: 20px;
+            opacity: 0.8;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        
+        th {
+            background-color: rgba(52, 73, 94, 0.08);
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+            border-bottom: 2px solid #ddd;
+            color: #2c3e50;
+        }
+        
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        tr:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .value-ftd {
+            color: #3498db;
+            font-weight: 700;
+            font-size: 15px;
+        }
+        
+        .value-variance {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        
+        .text-right {
+            text-align: right;
+        }
+        
+        .text-center {
             text-align: center;
         }
-
-        .summary-card h3 {
-            color: #4b5563;
-            font-size: 16px;
-            margin-bottom: 12px;
+        
+        /* Performance Section */
+        .performance-box {
+            grid-area: performance;
         }
-
-        .summary-value {
-            font-size: 36px;
-            font-weight: 800;
-            color: #1f2937;
+        
+        .performance-table td {
+            padding: 10px 15px;
         }
-
+        
+        /* Running Hours Section */
+        .running-hours-box {
+            grid-area: running-hours;
+        }
+        
+        .running-hours-table td {
+            padding: 10px 15px;
+        }
+        
+        /* Loading Section */
+        .loading-box {
+            grid-area: loading;
+        }
+        
+        .loading-table td {
+            padding: 10px 15px;
+        }
+        
+        /* Key Parameters Section */
+        .key-parameters-box {
+            grid-area: key-parameters;
+        }
+        
+        .key-parameters-table td {
+            padding: 10px 15px;
+        }
+        
+        /* Area Status Section */
+        .area-status-box {
+            grid-area: area-status;
+        }
+        
+        .area-status-table td {
+            padding: 10px 15px;
+        }
+        
+        .total-row {
+            font-weight: bold;
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        /* Machinery Section */
+        .machinery-box {
+            grid-area: machinery;
+        }
+        
+        .machinery-table td {
+            padding: 10px 15px;
+        }
+        
+        .hmr-cell {
+            white-space: nowrap;
+            font-family: 'Courier New', monospace;
+            background-color: rgba(0, 0, 0, 0.03);
+            border-radius: 4px;
+            padding: 5px 8px;
+            font-weight: 600;
+        }
+        
+        .remark-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(52, 152, 219, 0.08);
+            border-radius: 8px;
+            font-style: italic;
+            font-size: 14px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .data-badge {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        /* Responsive adjustments */
         @media (max-width: 1200px) {
-            .cards-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .dashboard-container {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto auto;
+                grid-template-areas: 
+                    "performance running-hours"
+                    "loading key-parameters"
+                    "area-status machinery";
             }
         }
-
+        
+        @media (max-width: 992px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .report-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .cards-grid {
+            body {
+                padding: 15px;
+            }
+            
+            .dashboard-container {
                 grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                grid-template-areas: 
+                    "performance"
+                    "running-hours"
+                    "loading"
+                    "key-parameters"
+                    "area-status"
+                    "machinery";
             }
-            .container {
-                padding: 20px 10px;
+            
+            .dashboard-box {
+                padding: 18px;
             }
+            
+            table {
+                font-size: 13px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+            
+            .report-buttons {
+                gap: 8px;
+            }
+            
+            .report-btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .report-buttons {
+                flex-direction: column;
+            }
+            
+            .report-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .dashboard-title {
+                font-size: 22px;
+            }
+        }
+        
+        /* Animation for report buttons when clicked */
+        @keyframes buttonClick {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        
+        .button-clicked {
+            animation: buttonClick 0.3s ease;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Mining Operations Dashboard</h1>
-        <p>January 2026 - Summary & Detailed Reports</p>
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">Mining Operations Dashboard</h1>
+        
+        <div class="report-buttons">
+            <button class="report-btn" id="performance-report">
+                <span>📊</span> Performance Report
+            </button>
+            <button class="report-btn" id="hours-report">
+                <span>⏱️</span> Running Hours Report
+            </button>
+            <button class="report-btn" id="loading-report">
+                <span>🚚</span> Loading Report
+            </button>
+            <button class="report-btn" id="parameters-report">
+                <span>📈</span> Key Parameters
+            </button>
+            <button class="report-btn" id="area-report">
+                <span>🗺️</span> Area Status
+            </button>
+            <button class="report-btn" id="machinery-report">
+                <span>🔧</span> Machinery Report
+            </button>
+        </div>
     </div>
-
-    <div class="container">
-        <!-- Home View - 6 Clickable Cards -->
-        <div id="home">
-            <div class="cards-grid">
-                <div class="card" id="card-performance" data-target="performance-detail">
-                    <h2 class="card-title">Performance</h2>
-                    <table>
-                        <tr>
-                            <th>Compressors</th>
-                            <th>Holes</th>
-                        </tr>
-                        <tr>
-                            <td><span class="value-ftd">12</span> FTD</td>
-                            <td><span class="value-ftd">635</span> FTD</td>
-                        </tr>
-                        <tr>
-                            <td>Variance: <span class="value-variance">-5</span></td>
-                            <td>Variance: <span class="value-variance">-365</span></td>
-                        </tr>
-                        <tr>
-                            <td><span>782</span> MTD</td>
-                            <td><span>1782</span> MTD</td>
-                        </tr>
-                        <tr>
-                            <td>Variance: <span class="value-variance">-218</span></td>
-                            <td>Variance: <span class="value-variance">-1231</span></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="card" id="card-running" data-target="running-detail">
-                    <h2 class="card-title">Running Hours</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Operation Type</th>
-                                <th class="text-right">FTD</th>
-                                <th class="text-right">MTD</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Quarry Run Hours</td><td class="text-right"><span class="value-ftd">6.9</span></td><td class="text-right">169.3</td></tr>
-                            <tr><td>Loading Hours</td><td class="text-right"><span class="value-ftd">8.5</span></td><td class="text-right">253.6</td></tr>
-                            <tr><td>Breaking Hours</td><td class="text-right"><span class="value-ftd">6</span></td><td class="text-right">143.7</td></tr>
-                            <tr><td>Development Hours</td><td class="text-right"><span class="value-ftd">5.5</span></td><td class="text-right">62.3</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="card" id="card-loading" data-target="loading-detail">
-                    <h2 class="card-title">Loading Start End Time</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Start Time</th>
-                                <th>End Time</th>
-                                <th class="text-right">Tippers</th>
-                                <th class="text-right">Machinery</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>9:15 AM</td><td>12:39 PM</td><td class="text-right">7</td><td class="text-right">3</td></tr>
-                            <tr><td>2:12 PM</td><td>7:51 PM</td><td class="text-right">10</td><td class="text-right">7</td></tr>
-                            <tr><td>9:36 PM</td><td>7:00 AM</td><td class="text-right">15</td><td class="text-right">9</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="card" id="card-key-params" data-target="key-params-detail">
-                    <h2 class="card-title">Key Parameters</h2>
-                    <table>
-                        <thead>
-                            <tr><th></th><th class="text-right">FTD</th><th class="text-right">MTD</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Compressors</td><td class="text-right"><span class="value-ftd">12</span></td><td class="text-right">245</td></tr>
-                            <tr><td>NMR</td><td class="text-right"><span class="value-ftd">42</span></td><td class="text-right">78</td></tr>
-                            <tr><td>Holes</td><td class="text-right"><span class="value-ftd">850</span></td><td class="text-right">15,800</td></tr>
-                            <tr><td>Feets</td><td class="text-right"><span class="value-ftd">4,250</span></td><td class="text-right">79,000</td></tr>
-                            <tr><td>Production</td><td class="text-right"><span class="value-ftd">1,250</span></td><td class="text-right">22,500</td></tr>
-                            <tr><td>Boulder transport Trips</td><td class="text-right"><span class="value-ftd">456</span></td><td class="text-right">11,520</td></tr>
-                            <tr><td>Boulder transport Qty</td><td class="text-right"><span class="value-ftd">2,151</span></td><td class="text-right">36,255</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="card" id="card-area-status" data-target="area-status-detail">
-                    <h2 class="card-title">Area Wise Compressor Status</h2>
-                    <table>
-                        <thead>
-                            <tr><th>Area</th><th class="text-right">FTD</th><th class="text-right">MTD</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>9 Ha – Pit 3</td><td class="text-right"><span class="value-ftd">5</span></td><td class="text-right">105</td></tr>
-                            <tr><td>Bench 1</td><td class="text-right"><span class="value-ftd">2</span></td><td class="text-right">40</td></tr>
-                            <tr><td>Bench 2</td><td class="text-right"><span class="value-ftd">2</span></td><td class="text-right">38</td></tr>
-                            <tr><td>Bench 3</td><td class="text-right"><span class="value-ftd">1</span></td><td class="text-right">22</td></tr>
-                            <tr><td>Bench 4</td><td class="text-right"><span class="value-ftd">1</span></td><td class="text-right">20</td></tr>
-                            <tr><td>Pit-2</td><td class="text-right"><span class="value-ftd">4</span></td><td class="text-right">80</td></tr>
-                            <tr class="total-row"><td>Total</td><td class="text-right">12</td><td class="text-right">245</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="card" id="card-machinery" data-target="machinery-detail">
-                    <h2 class="card-title">Machinery</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Machine</th>
-                                <th>HMR Open/Close</th>
-                                <th class="text-right">W.Hours</th>
-                                <th class="text-right">Diesel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>SGX V - 1</td><td>113.5 / 119.6</td><td class="text-right">6.3</td><td class="text-right">230 L</td></tr>
-                            <tr><td>SGX V - 2</td><td>152.6 / 163.63</td><td class="text-right">7.1</td><td class="text-right">145 L</td></tr>
-                            <tr><td>Govinda - 1</td><td>114.6 / 121.3</td><td class="text-right">6.3</td><td class="text-right">230 L</td></tr>
-                            <tr><td>Govinda - 2</td><td>163.9 / 169.7</td><td class="text-right">3.6</td><td class="text-right">120 L</td></tr>
-                            <tr><td>Hyundai - rental</td><td>152.6 / 163.63</td><td class="text-right">4.6</td><td class="text-right">45 L</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+    
+    <div class="dashboard-container">
+        <!-- Performance Section -->
+        <div class="dashboard-box performance-box" id="performance-section">
+            <div class="section-title">
+                Performance
+                <span class="section-icon">📊</span>
             </div>
+            <table class="performance-table">
+                <tr>
+                    <th>Compressors</th>
+                    <th>Holes</th>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="value-ftd">12</span> FTD
+                    </td>
+                    <td>
+                        <span class="value-ftd">635</span> FTD
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Variance: <span class="value-variance">-5</span>
+                    </td>
+                    <td>
+                        Variance: <span class="value-variance">-365</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>782</span> MTD
+                    </td>
+                    <td>
+                        <span>1782</span> MTD
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Variance: <span class="value-variance">-218</span>
+                    </td>
+                    <td>
+                        Variance: <span class="value-variance">-1231</span>
+                    </td>
+                </tr>
+            </table>
         </div>
-
-        <!-- Detailed Views -->
-        <div id="performance-detail" class="detail-view">
-            <button class="back-btn" onclick="backToHome()">← Back to Dashboard</button>
-            <h2 class="report-title" style="border-color:#c2410c; color:#c2410c;">Performance Data Summary</h2>
-            <p class="subtitle">Operational efficiency and recovery metrics - January 2026</p>
-            <!-- Content from previous Performance section -->
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-bottom:40px;">
-                <div>
-                    <table>
-                        <thead><tr><th>Metric</th><th>Value</th></tr></thead>
-                        <tbody>
-                            <tr><td>Compressors</td><td>11</td></tr>
-                            <tr><td>NMR</td><td>11</td></tr>
-                            <tr><td>Holes</td><td>785</td></tr>
-                            <tr><td>Feets</td><td>3,925</td></tr>
-                            <tr><td>Loading Hrs</td><td>6.3</td></tr>
-                            <tr><td>Breaking Hrs</td><td>3.60</td></tr>
-                            <tr><td>Breaking %</td><td>21.60%</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <table>
-                        <thead><tr><th>Metric</th><th>Value</th></tr></thead>
-                        <tbody>
-                            <tr><td>Trips / Qty from Quarry to Plant</td><td>21 / 3,469</td></tr>
-                            <tr><td>Recovery %</td><td>83.40%</td></tr>
-                            <tr><td>Feet per Hour</td><td>623.0</td></tr>
-                            <tr><td>Holes per Hour</td><td>124.6</td></tr>
-                            <tr><td>Productivity Index</td><td>88.2%</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+        
+        <!-- Running Hours Section -->
+        <div class="dashboard-box running-hours-box" id="running-hours-section">
+            <div class="section-title">
+                Running Hours
+                <span class="section-icon">⏱️</span>
             </div>
-            <div class="summary-box">
-                <div class="summary-card"><h3>Overall Efficiency</h3><div class="summary-value">88.2%</div></div>
-                <div class="summary-card"><h3>Material Recovery</h3><div class="summary-value">83.4%</div></div>
-                <div class="summary-card"><h3>Feet per Compressor</h3><div class="summary-value">356.8</div></div>
-                <div class="summary-card"><h3>Holes per Compressor</h3><div class="summary-value">71.4</div></div>
-            </div>
-        </div>
-
-        <div id="running-detail" class="detail-view">
-            <button class="back-btn" onclick="backToHome()">← Back to Dashboard</button>
-            <h2 class="report-title" style="border-color:#15803d; color:#15803d;">Running Hours - Monthly Detail</h2>
-            <p class="subtitle">Daily breakdown of operation hours - January 2026 (Sample)</p>
-            <table>
+            <table class="running-hours-table">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Quarry Run</th>
-                        <th>Loading</th>
-                        <th>Breaking</th>
-                        <th>Development</th>
-                        <th class="text-right">Total Hrs</th>
+                        <th>Operation Type</th>
+                        <th class="text-right">FTD</th>
+                        <th class="text-right">MTD</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>01-01-2026</td><td>6.9</td><td>8.5</td><td>6.0</td><td>5.5</td><td class="text-right">26.9</td></tr>
-                    <tr><td>02-01-2026</td><td>7.2</td><td>8.2</td><td>5.8</td><td>5.3</td><td class="text-right">26.5</td></tr>
-                    <!-- Add more rows as needed -->
-                    <tr class="total-row"><td><strong>8-Day Total</strong></td><td><strong>56.1</strong></td><td><strong>67.9</strong></td><td><strong>47.8</strong></td><td><strong>43.2</strong></td><td class="text-right"><strong>215.0</strong></td></tr>
+                    <tr>
+                        <td>Quarry Run Hours</td>
+                        <td class="text-right"><span class="value-ftd">6.9</span></td>
+                        <td class="text-right">169.3</td>
+                    </tr>
+                    <tr>
+                        <td>Loading Hours</td>
+                        <td class="text-right"><span class="value-ftd">8.5</span></td>
+                        <td class="text-right">253.6</td>
+                    </tr>
+                    <tr>
+                        <td>Breaking Hours</td>
+                        <td class="text-right"><span class="value-ftd">6</span></td>
+                        <td class="text-right">143.7</td>
+                    </tr>
+                    <tr>
+                        <td>Development Hours</td>
+                        <td class="text-right"><span class="value-ftd">5.5</span></td>
+                        <td class="text-right">62.3</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-
-        <div id="loading-detail" class="detail-view">
-            <button class="back-btn" onclick="backToHome()">← Back to Dashboard</button>
-            <h2 class="report-title" style="border-color:#0891b2; color:#0891b2;">Loading Start & End Times - January 2026</h2>
-            <p class="subtitle">Monthly record of loading operations timing and duration</p>
-            <table>
+        
+        <!-- Loading Start End Time Section -->
+        <div class="dashboard-box loading-box" id="loading-section">
+            <div class="section-title">
+                Loading Start End Time
+                <span class="section-icon">🚚</span>
+            </div>
+            <table class="loading-table">
                 <thead>
                     <tr>
-                        <th>Date</th>
                         <th>Start Time</th>
                         <th>End Time</th>
-                        <th>Total Hours</th>
-                        <th>Notes</th>
+                        <th class="text-right">Tippers</th>
+                        <th class="text-right">Machinery</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>01-01-2026</td><td>07:30 AM</td><td>06:30 PM</td><td>11.0</td><td>-</td></tr>
-                    <tr><td>02-01-2026</td><td>08:00 AM</td><td>07:00 PM</td><td>11.0</td><td>-</td></tr>
-                    <!-- More rows from previous -->
-                    <tr class="total-row"><td><strong>Average</strong></td><td colspan="2"></td><td><strong>11.0 hrs/day</strong></td><td>-</td></tr>
+                    <tr>
+                        <td>9:15 AM</td>
+                        <td>12:39 PM</td>
+                        <td class="text-right">7</td>
+                        <td class="text-right">3</td>
+                    </tr>
+                    <tr>
+                        <td>2:12 PM</td>
+                        <td>7:51 PM</td>
+                        <td class="text-right">10</td>
+                        <td class="text-right">7</td>
+                    </tr>
+                    <tr>
+                        <td>9:36 PM</td>
+                        <td>7:00 AM</td>
+                        <td class="text-right">15</td>
+                        <td class="text-right">9</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-
-        <div id="key-params-detail" class="detail-view">
-            <button class="back-btn" onclick="backToHome()">← Back to Dashboard</button>
-            <h2 class="report-title" style="border-color:#1e40af; color:#1e40af;">Key Parameters - Drilling Data</h2>
-            <p class="subtitle">Month Wise Drilling Data - January 2026</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Compressor</th>
-                        <th>Holes</th>
-                        <th>Feets</th>
-                        <th>NMR</th>
-                        <th>Gap</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Full table from previous drilling summary -->
-                    <tr><td>01-01-2026</td><td>11</td><td>653</td><td>3,465</td><td>9</td><td class="gap-red">6 / 347</td></tr>
-                    <!-- ... all rows ... -->
-                    <tr class="total-row">
-                        <td><strong>Total</strong></td>
-                        <td><strong>86</strong></td>
-                        <td><strong>6,083</strong></td>
-                        <td><strong>35,657</strong></td>
-                        <td><strong>90</strong></td>
-                        <td class="gap-red"><strong>50 / 1,927</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="summary-box">
-                <div class="summary-card"><h3>Avg Compressors/Day</h3><div class="summary-value">10.8</div></div>
-                <div class="summary-card"><h3>Avg Holes/Day</h3><div class="summary-value">760.4</div></div>
-                <div class="summary-card"><h3>Avg Feet/Day</h3><div class="summary-value">4,457.1</div></div>
-                <div class="summary-card"><h3>Avg NMR/Day</h3><div class="summary-value">11.3</div></div>
+        
+        <!-- Key Parameters Section -->
+        <div class="dashboard-box key-parameters-box" id="key-parameters-section">
+            <div class="section-title">
+                Key Parameters
+                <span class="section-icon">📈</span>
             </div>
-        </div>
-
-        <div id="area-status-detail" class="detail-view">
-            <button class="back-btn" onclick="backToHome()">← Back to Dashboard</button>
-            <h2 class="report-title" style="border-color:#7e22ce; color:#7e22ce;">Area Wise Compressor Status - Monthly</h2>
-            <p class="subtitle">Daily compressor allocation by area - January 2026 (Sample)</p>
-            <table>
+            <table class="key-parameters-table">
                 <thead>
                     <tr>
-                        <th>Date</th>
+                        <th></th>
+                        <th class="text-right">FTD <span class="data-badge">Today</span></th>
+                        <th class="text-right">MTD <span class="data-badge">Month</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Compressors</td>
+                        <td class="text-right"><span class="value-ftd">12</span></td>
+                        <td class="text-right">245</td>
+                    </tr>
+                    <tr>
+                        <td>NMR</td>
+                        <td class="text-right"><span class="value-ftd">42</span></td>
+                        <td class="text-right">78</td>
+                    </tr>
+                    <tr>
+                        <td>Holes</td>
+                        <td class="text-right"><span class="value-ftd">850</span></td>
+                        <td class="text-right">15,800</td>
+                    </tr>
+                    <tr>
+                        <td>Feets</td>
+                        <td class="text-right"><span class="value-ftd">4,250</span></td>
+                        <td class="text-right">79,000</td>
+                    </tr>
+                    <tr>
+                        <td>Production</td>
+                        <td class="text-right"><span class="value-ftd">1,250</span></td>
+                        <td class="text-right">22,500</td>
+                    </tr>
+                    <tr>
+                        <td>Boulder transport Trips</td>
+                        <td class="text-right"><span class="value-ftd">456</span></td>
+                        <td class="text-right">11,520</td>
+                    </tr>
+                    <tr>
+                        <td>Boulder transport Qty</td>
+                        <td class="text-right"><span class="value-ftd">2,151</span></td>
+                        <td class="text-right">36,255</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Area Wise Compressor Status Section -->
+        <div class="dashboard-box area-status-box" id="area-status-section">
+            <div class="section-title">
+                Area Wise Compressor Status
+                <span class="section-icon">🗺️</span>
+            </div>
+            <table class="area-status-table">
+                <thead>
+                    <tr>
                         <th>Area</th>
-                        <th>Compressors</th>
+                        <th class="text-right">FTD</th>
+                        <th class="text-right">MTD</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td rowspan="6">01-01-2026</td><td>9 Ha – Pit 3</td><td>5</td></tr>
-                    <tr><td>Bench 1</td><td>2</td></tr>
-                    <tr><td>Bench 2</td><td>2</td></tr>
-                    <tr><td>Bench 3</td><td>1</td></tr>
-                    <tr><td>Bench 4</td><td>1</td></tr>
-                    <tr><td>Pit-2</td><td>4</td></tr>
-                    <!-- Add more dates as needed -->
-                    <tr class="total-row"><td colspan="2"><strong>Total (Sample Period)</strong></td><td><strong>86</strong></td></tr>
+                    <tr>
+                        <td>9 Ha – Pit 3</td>
+                        <td class="text-right"><span class="value-ftd">5</span></td>
+                        <td class="text-right">105</td>
+                    </tr>
+                    <tr>
+                        <td>Bench 1</td>
+                        <td class="text-right"><span class="value-ftd">2</span></td>
+                        <td class="text-right">40</td>
+                    </tr>
+                    <tr>
+                        <td>Bench 2</td>
+                        <td class="text-right"><span class="value-ftd">2</span></td>
+                        <td class="text-right">38</td>
+                    </tr>
+                    <tr>
+                        <td>Bench 3</td>
+                        <td class="text-right"><span class="value-ftd">1</span></td>
+                        <td class="text-right">22</td>
+                    </tr>
+                    <tr>
+                        <td>Bench 4</td>
+                        <td class="text-right"><span class="value-ftd">1</span></td>
+                        <td class="text-right">20</td>
+                    </tr>
+                    <tr>
+                        <td>Pit-2</td>
+                        <td class="text-right"><span class="value-ftd">4</span></td>
+                        <td class="text-right">80</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>Total</td>
+                        <td class="text-right">12</td>
+                        <td class="text-right">245</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-
-        <div id="machinery-detail" class="detail-view">
-            <button class="back-btn" onclick="backToHome()">← Back to Dashboard</button>
-            <h2 class="report-title" style="border-color:#b45309; color:#b45309;">Machinery Hours & Diesel - January 2026</h2>
-            <p class="subtitle">Full monthly equipment hours and diesel consumption</p>
-            <!-- Full content from previous machinery tab -->
-            <table>
-                <!-- Full daily table from previous -->
+        
+        <!-- Machinery Section -->
+        <div class="dashboard-box machinery-box" id="machinery-section">
+            <div class="section-title">
+                Machinery
+                <span class="section-icon">🔧</span>
+            </div>
+            <table class="machinery-table">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>SGX V-1 (Hrs / L)</th>
-                        <th>SGX V-2 (Hrs / L)</th>
-                        <th>Govinda-1 (Hrs / L)</th>
-                        <th>Govinda-2 (Hrs / L)</th>
-                        <th>Hyundai (Rental) (Hrs / L)</th>
-                        <th>Total Hrs</th>
-                        <th>Total Diesel (L)</th>
+                        <th>Machine</th>
+                        <th>HMR Open/Close</th>
+                        <th class="text-right">W.Hours</th>
+                        <th class="text-right">Diesel</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Rows from previous -->
-                    <tr class="total-row">
-                        <td><strong>8-Day Total</strong></td>
-                        <td><strong>50.5 / 1,802</strong></td>
-                        <td><strong>56.2 / 1,200</strong></td>
-                        <td><strong>51.0 / 1,865</strong></td>
-                        <td><strong>29.4 / 926</strong></td>
-                        <td><strong>36.3 / 381</strong></td>
-                        <td><strong>223.4</strong></td>
-                        <td><strong>6,194</strong></td>
+                    <tr>
+                        <td>SGX V - 1</td>
+                        <td class="hmr-cell">113.5 / 119.6</td>
+                        <td class="text-right">6.3</td>
+                        <td class="text-right">230 L</td>
+                    </tr>
+                    <tr>
+                        <td>SGX V - 2</td>
+                        <td class="hmr-cell">152.6 / 163.63</td>
+                        <td class="text-right">7.1</td>
+                        <td class="text-right">145 L</td>
+                    </tr>
+                    <tr>
+                        <td>Govinda - 1</td>
+                        <td class="hmr-cell">114.6 / 121.3</td>
+                        <td class="text-right">6.3</td>
+                        <td class="text-right">230 L</td>
+                    </tr>
+                    <tr>
+                        <td>Govinda - 2</td>
+                        <td class="hmr-cell">163.9 / 169.7</td>
+                        <td class="text-right">3.6</td>
+                        <td class="text-right">120 L</td>
+                    </tr>
+                    <tr>
+                        <td>Hyundai - rental</td>
+                        <td class="hmr-cell">152.6 / 163.63</td>
+                        <td class="text-right">4.6</td>
+                        <td class="text-right">45 L</td>
                     </tr>
                 </tbody>
             </table>
-            <!-- Equipment summary tables from previous -->
+            <div class="remark-section">
+                Remark: All machinery operating within normal parameters. SGX V-2 showing optimal fuel efficiency.
+            </div>
         </div>
     </div>
 
     <script>
-        function backToHome() {
-            document.querySelectorAll('.detail-view').forEach(view => {
-                view.style.display = 'none';
+        // Add click functionality to report buttons
+        document.querySelectorAll('.report-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Add animation class
+                this.classList.add('button-clicked');
+                
+                // Remove animation class after animation completes
+                setTimeout(() => {
+                    this.classList.remove('button-clicked');
+                }, 300);
+                
+                // Get the report type from button id
+                const reportType = this.id.replace('-report', '');
+                
+                // Scroll to the corresponding section
+                const sectionId = `${reportType}-section`;
+                const section = document.getElementById(sectionId);
+                
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Add highlight effect to the section
+                    section.style.boxShadow = '0 0 0 3px rgba(52, 152, 219, 0.5)';
+                    setTimeout(() => {
+                        section.style.boxShadow = '';
+                    }, 1500);
+                }
+                
+                // In a real application, this would fetch and display report data
+                console.log(`Generating ${reportType.replace('-', ' ')} report...`);
+                
+                // Show a notification
+                showNotification(`${this.textContent.trim()} data is being loaded...`);
             });
-            document.getElementById('home').style.display = 'block';
+        });
+        
+        // Function to show notification
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #2ecc71;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                font-weight: 500;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            // Add animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
         }
-
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', () => {
-                const target = card.getAttribute('data-target');
-                document.getElementById('home').style.display = 'none';
-                document.getElementById(target).style.display = 'block';
+        
+        // Add hover effect to table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transition = 'background-color 0.2s ease';
             });
         });
     </script>
